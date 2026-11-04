@@ -1,10 +1,10 @@
 # logpeek
 
-Alat CLI untuk membaca berkas log besar dengan penyaringan, sorot level, tail, dan ringkasan per level. Hanya menggunakan pustaka standar Python 3.11.
+Alat CLI Python 3.11 untuk membaca berkas log besar dengan fitur penyaringan pola, sorot level, tail, dan ringkasan per level. Hanya menggunakan pustaka standar.
 
 ## Instalasi
 
-Tidak perlu instalasi. Cukup jalankan dengan Python 3.11+:
+Tidak perlu instalasi dependensi. Cukup jalankan dengan Python 3.11+:
 
 ```bash
 python logpeek.py --help
@@ -13,47 +13,45 @@ python logpeek.py --help
 ## Penggunaan
 
 ```
-logpeek.py BERKAS [--pola POLA] [--tail N] [--ringkas] [--sorot]
+logpeek [--pola POLA] [--tail N] [--sorot] [--ringkas] berkas
 ```
 
-### Opsi
+### Argumen
 
-- `BERKAS`: Path ke berkas log yang akan dibaca (wajib).
-- `--pola`, `-p`: Pola regex untuk menyaring baris (opsional).
-- `--tail`, `-t`: Tampilkan N baris terakhir setelah penyaringan (opsional).
-- `--ringkas`, `-r`: Hitung jumlah baris per level log (DEBUG, INFO, WARNING, ERROR, LAINNYA).
-- `--sorot`, `-s`: Sorot level log dengan warna (hanya jika terminal mendukung).
+- `berkas`: Path ke berkas log yang akan dibaca (wajib).
+- `-p, --pola POLA`: Pola regex untuk menyaring baris. Contoh: `'ERROR|WARN'`.
+- `-t, --tail N`: Tampilkan hanya N baris terakhir setelah penyaringan.
+- `-s, --sorot`: Sorot level log (DEBUG, INFO, WARN, ERROR, dll.) dengan warna ANSI.
+- `-r, --ringkas`: Hitung dan tampilkan jumlah baris per level log. Tidak menampilkan baris.
 
 ### Contoh
 
-1. Tampilkan semua baris dari `app.log`:
+1. Tampilkan 10 baris terakhir dari log dengan sorot level:
    ```bash
-   python logpeek.py app.log
+   python logpeek.py app.log --tail 10 --sorot
    ```
 
-2. Saring baris yang mengandung "ERROR" dan tampilkan 5 baris terakhir:
+2. Saring baris yang mengandung "ERROR" atau "WARN" lalu tampilkan 5 terakhir:
    ```bash
-   python logpeek.py app.log --pola ERROR --tail 5
+   python logpeek.py app.log --pola 'ERROR|WARN' --tail 5
    ```
 
-3. Ringkas jumlah per level dari `app.log`:
+3. Ringkas jumlah level log dari seluruh berkas:
    ```bash
    python logpeek.py app.log --ringkas
    ```
 
-4. Saring dengan regex dan sorot level:
+4. Saring dengan pola dan ringkas:
    ```bash
-   python logpeek.py app.log --pola "user=\d+" --sorot
+   python logpeek.py app.log --pola 'CRITICAL' --ringkas
    ```
 
-## Exit Code
+## Penanganan Kesalahan
 
-- `0`: Berhasil.
-- `1`: Kesalahan argumen (mis. regex tidak valid, tail negatif).
-- `2`: Berkas tidak ditemukan atau tidak dapat dibaca.
+- Jika berkas tidak ditemukan atau tidak dapat dibaca, program mencetak pesan kesalahan ke stderr dan keluar dengan kode 2.
+- Jika pola regex tidak valid, program mencetak pesan kesalahan dan keluar dengan kode 2.
 
 ## Catatan
 
-- Sorot warna hanya aktif jika `--sorot` diberikan dan output adalah terminal (TTY).
-- Output ringkasan dalam format `LEVEL: jumlah` yang mudah diparse.
-- Penanganan berkas besar: mode streaming untuk penyaringan tanpa tail; mode baca semua untuk tail (karena keterbatasan).
+- Warna ANSI hanya ditampilkan jika opsi `--sorot` digunakan; pastikan terminal mendukung warna.
+- Untuk berkas sangat besar, disarankan menggunakan `--tail` atau `--ringkas` untuk mengurangi memori.

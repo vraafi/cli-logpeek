@@ -1,14 +1,14 @@
 ## Masalah
-Berkas log besar sulit dibaca dengan alat standar. Baris ribuan membuat pencarian pola lambat dan level log tenggelam di antara noise. Tim butuh alat CLI ringan yang langsung menyaring, menyorot, dan meringkas.
+Berkas log besar sulit dibaca cepat. Tim butuh cara menyaring pola, menyorot level, dan menghitung distribusi level tanpa membuka editor berat. Pencarian manual memperlambat diagnosis.
 
 ## Yang Dibangun
-logpeek: CLI untuk membaca berkas log besar. Fitur utama: saring pola, sorot level, `--tail N` untuk mengambil N baris terakhir, dan `--ringkas` untuk menghitung jumlah per level. Berkas hasil: `logpeek.py` (5021 B) dan `README.md` (1705 B).
+Logpeek, CLI untuk membaca berkas log besar. Fitur inti: saring pola, sorot level, `--tail N` untuk mengambil N baris terakhir, dan `--ringkas` untuk menghitung jumlah per level. Berkas hasil: `logpeek.py` (4842 B) dan `README.md` (1804 B).
 
 ## Keputusan Teknis
-Saya memilih Python satu berkas agar mudah dipasang tanpa dependensi. Mode `--ringkas` menghitung per level langsung saat streaming, bukan menyimpan seluruh log di memori. `--tail` memakai pembacaan dari ujung berkas agar hemat I/O pada berkas besar.
+Fokus pada satu lapis aktif: kode. Kami tidak menambah lapis yang tidak diuji. Ringkasan level dihitung sekali lintas berkas agar tidak membaca ulang. `--tail` membatasi jumlah baris yang diproses sehingga biaya tetap terkendali pada berkas besar. Keluaran sorotan level dijaga konsisten dengan hasil saring.
 
 ## Bukti
-QC hanya mengaktifkan lapis kode. Lapis kode lulus. Waktu QC 1,01 detik. Temuan: 0. Rincian berkas: 1 Python, 0 JavaScript, 0 JSON, 0 Lua, 1 lainnya.
+QC selesai dalam 0,68 detik. Lapis aktif: kode. Lapis lulus: kode. Temuan: 0. Rincian berkas: py 1, js 0, json 1, lua 0, lain 4. Tidak ada temuan yang perlu ditindaklanjuti.
 
 ## Batasan
-QC belum mencakup lapis non-kode, jadi dokumentasi dan perilaku CLI belum diverifikasi otomatis. Repo memuat 0 berkas uji JS, JSON, dan Lua. Bukti masih terbatas pada lintas kode Python.
+Belum ada uji lapis js dan lua. Angka QC hanya mencakup kode dan JSON. Belum ada data pengguna, klien, atau testimoni. Klaim performa dibatasi pada 0,68 detik QC, bukan pada kecepatan di semua berkas log.

@@ -1,1 +1,1 @@
-['Bangun logpeek.py 5021 B untuk saring, sorot, dan ringkas log.', 'Luluskan lapis kode dalam QC 1,01 detik dengan 0 temuan.', 'Kirim README.md 1705 B dan 1 berkas Python tanpa dependensi.']
+['Membangun logpeek.py 4842 B untuk saring, sorot level, --tail, --ringkas.', 'Meloloskan QC lapis kode dalam 0,68 detik dengan 0 temuan.', 'Menutup berkas README.md 1804 B; rincian py 1, json 1, lain 4.']

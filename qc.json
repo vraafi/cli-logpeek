@@ -26,13 +26,13 @@
    "jumlah_berkas": {
     "py": 1,
     "js": 0,
-    "json": 0,
+    "json": 1,
     "lua": 0,
-    "lain": 1
+    "lain": 4
    },
-   "jumlah_diperiksa": 2,
-   "detik": 1.01,
-   "diperiksa": "2026-11-03T14:02:21+07:00"
+   "jumlah_diperiksa": 6,
+   "detik": 0.67,
+   "diperiksa": "2026-11-04T21:25:24+07:00"
   },
   "visual": {
    "lapis": "visual",
@@ -42,7 +42,7 @@
    "vonis": "tidak berlaku",
    "temuan": [],
    "sebab": "tidak ada URL UI",
-   "diperiksa": "2026-11-03T14:02:21+07:00"
+   "diperiksa": "2026-11-04T21:25:24+07:00"
   },
   "pengguna": {
    "lapis": "pengguna",
@@ -52,17 +52,24 @@
    "vonis": "tidak berlaku",
    "temuan": [],
    "sebab": "tidak ada URL UI",
-   "diperiksa": "2026-11-03T14:02:21+07:00"
+   "diperiksa": "2026-11-04T21:25:24+07:00"
   }
  },
- "detik": 1.01,
- "diperiksa": "2026-11-03T14:02:21+07:00",
+ "override_deterministik": {
+  "diterapkan": false,
+  "hijau": true,
+  "dibatalkan": [],
+  "bertahan": [],
+  "catatan": ""
+ },
+ "detik": 0.68,
+ "diperiksa": "2026-11-04T21:25:24+07:00",
  "target": "C:\\Users\\user\\otonom-penuh\\workspace\\trust-test\\cli-logpeek",
  "url": null,
  "uji_jalan": {
   "ok": true,
   "kode": 0,
-  "keluaran": "usage: logpeek.py [-h] [--pola POLA] [--tail N] [--ringkas] [--sorot] berkas\n\nlogpeek: Saring dan ringkas berkas log besar.\n\npositional arguments:\n  berkas           Path ke berkas log yang akan dibaca\n\noptions:\n  -h, --help       show this help message and exit\n  --pola, -p POLA  Pola regex untuk menyaring baris\n  --tail, -t N     Tampilkan N baris terakhir setelah penyaringan\n  --ringkas, -r    ",
+  "keluaran": "usage: logpeek [-h] [-p POLA] [-t N] [-s] [-r] berkas\n\nMembaca dan menganalisis berkas log besar: saring pola, sorot level, tail, dan ringkas per level.\n\npositional arguments:\n  berkas           Path ke berkas log yang akan dibaca\n\noptions:\n  -h, --help       show this help message and exit\n  -p, --pola POLA  Pola regex untuk menyaring baris (contoh: 'ERROR|WARN')\n  -t, --tail N     Tampilkan hany",
   "galat": ""
  }
 }

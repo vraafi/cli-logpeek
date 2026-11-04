@@ -1,1 +1,7 @@
-1 lapis QC lulus dalam 1,01 detik. 0 temuan. Itu angka untuk logpeek, CLI pembaca log besar. Kami bangun `logpeek.py` 5021 B: saring pola, sorot level, `--tail N`, dan `--ringkas` untuk hitung per level. README.md 1705 B menjelaskan pemakaian. Keputusan teknis: satu berkas Python, tanpa dependensi, ringkas dihitung saat streaming. Batasnya jelas: QC baru mencakup lapis kode. Lapis non-kode belum diverifikasi otomatis, dan belum ada berkas uji JS, JSON, atau Lua. Kami tidak klaim lebih dari bukti. Langkah berikut: tambah lapis QC untuk dokumentasi dan uji CLI. Jalankan `logpeek --ringkas` pada satu berkas log Anda hari ini, lalu kirim temuan pertama. #logpeek #cli #qc
+0,68 detik. Itu waktu QC untuk logpeek. Lapis aktif: kode. Lapis lulus: kode. Temuan: 0.
+
+Logpeek adalah CLI untuk membaca berkas log besar. Kami bangun empat fungsi inti: saring pola, sorot level, `--tail N`, dan `--ringkas` untuk hitung per level. Hasilnya `logpeek.py` 4842 B dan `README.md` 1804 B.
+
+Kami batasi klaim. Belum ada uji lapis js dan lua. Rincian berkas: py 1, json 1, lain 4. Tidak ada data pengguna atau klien yang kami pakai sebagai bukti.
+
+Langkah berikut: uji lapis js dan lua, lalu perluas cakupan QC. Jalankan `logpeek.py --ringkas` pada satu berkas log nyata dan laporkan temuan ke tim. #logpeek #cli #qc
